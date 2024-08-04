@@ -1,12 +1,20 @@
 import '../../../../support/enums/move_enum.dart';
 import 'move_item_view.dart';
 
+abstract class MoveItemDelegate {
+  void onTap(MoveEnum move);
+}
+
 class MoveItemViewModel extends MoveItemViewModelProtocol {
   // MARK: - Init
 
   final MoveEnum move;
+  final MoveItemDelegate delegate;
 
-  MoveItemViewModel({required this.move});
+  MoveItemViewModel({
+    required this.move,
+    required this.delegate,
+  });
 
   // MARK: - Public Methods
 
@@ -17,6 +25,6 @@ class MoveItemViewModel extends MoveItemViewModelProtocol {
 
   @override
   void onTap() {
-    // TODO: implement onTap
+    delegate.onTap(move);
   }
 }
